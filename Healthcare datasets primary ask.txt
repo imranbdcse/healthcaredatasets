@@ -1,0 +1,153 @@
+Dataset Information:
+The dataset includes various columns, each providing specific details about patients, their admissions, and the healthcare services received. Below is a brief description of each column:
+
+import numpy as np # Numpy array , mathematical use
+import pandas as pd #Pandas work on Dataframes tables
+import matplotlib.pyplot as plt # visualizing data, Charts and Graph
+%matplotlib inline 
+import seaborn as sns # visualizing data, Charts and Graph
+
+
+df = pd.read_csv(r'C:\Users\imran\Downloads\Data science\healthcare_dataset.csv', encoding='unicode_escape')
+
+df.shape  #Data row column size 
+
+(55500, 15)
+
+
+df.head()
+
+Name	Age	Gender	Blood Type	Medical Condition	Date of Admission	Doctor	Hospital	Insurance Provider	Billing Amount	Room Number	Admission Type	Discharge Date	Medication	Test Results
+0	Bobby JacksOn	30	Male	B-	Cancer	2024-01-31	Matthew Smith	Sons and Miller	Blue Cross	18856.281306	328	Urgent	2024-02-02	Paracetamol	Normal
+1	LesLie TErRy	62	Male	A+	Obesity	2019-08-20	Samantha Davies	Kim Inc	Medicare	33643.327287	265	Emergency	2019-08-26	Ibuprofen	Inconclusive
+2	DaNnY sMitH	76	Female	A-	Obesity	2022-09-22	Tiffany Mitchell	Cook PLC	Aetna	27955.096079	205	Emergency	2022-10-07	Aspirin	Normal
+3	andrEw waTtS	28	Female	O+	Diabetes	2020-11-18	Kevin Wells	Hernandez Rogers and Vang,	Medicare	37909.782410	450	Elective	2020-12-18	Ibuprofen	Abnormal
+4	adrIENNE bEll	43	Female	AB+	Cancer	2022-09-19	Kathleen Hanna	White-White	Aetna	14238.317814	458	Urgent	2022-10-09	Penicillin	Abnormal
+
+
+
+Name: Patient’s name associated with the healthcare record.
+Age: Patient’s age at the time of admission, in years.
+Gender: Patient’s gender, either "Male" or "Female."
+Blood Type: Patient’s blood type (e.g., "A+", "O-").
+Medical Condition: Primary medical condition or diagnosis (e.g., "Diabetes," "Hypertension").
+Date of Admission: Date of patient admission to the healthcare facility.
+Doctor: Name of the doctor responsible for the patient’s care during admission.
+Hospital: Healthcare facility or hospital where the patient was admitted.
+Insurance Provider: Patient’s insurance provider (e.g., "Aetna," "Blue Cross").
+Billing Amount: Amount billed for healthcare services, expressed as a floating-point number.
+Room Number: Room number where the patient was accommodated.
+Admission Type: Type of admission ("Emergency," "Elective," or "Urgent").
+Discharge Date: Date of discharge from the healthcare facility, based on admission date and a realistic range of days.
+Medication: Medication prescribed or administered (e.g., "Aspirin," "Ibuprofen").
+Test Results: Results of medical tests during admission ("Normal," "Abnormal," "Inconclusive").
+
+
+Usage Scenarios:
+
+
+This dataset can be used for various purposes, including:
+
+Developing and testing healthcare predictive models.
+
+Practicing data cleaning, transformation, and analysis techniques.
+Creating data visualizations to understand healthcare trends.
+Learning and teaching data science and machine learning in a healthcare context.
+The dataset can be approached as a Multi-Class Classification Problem with the “Test Results” column, which contains three categories: Normal, Abnormal, and Inconclusive.
+
+
+
+Name	Age	Gender	Blood Type	Medical Condition	Date of Admission	Doctor	Hospital	Insurance Provider	Billing Amount	Room Number	Admission Type	Discharge Date	Medication	Test Results
+0	Bobby JacksOn	30	Male	B-	Cancer	2024-01-31	Matthew Smith	Sons and Miller	Blue Cross	18856.281306	328	Urgent	2024-02-02	Paracetamol	Normal
+1	LesLie TErRy	62	Male	A+	Obesity	2019-08-20	Samantha Davies	Kim Inc	Medicare	33643.327287	265	Emergency	2019-08-26	Ibuprofen	Inconclusive
+2	DaNnY sMitH	76	Female	A-	Obesity	2022-09-22	Tiffany Mitchell	Cook PLC	Aetna	27955.096079	205	Emergency	2022-10-07	Aspirin	Normal
+3	andrEw waTtS	28	Female	O+	Diabetes	2020-11-18	Kevin Wells	Hernandez Rogers and Vang,	Medicare	37909.782410	450	Elective	2020-12-18	Ibuprofen	Abnormal
+4	adrIENNE bEll	43	Female	AB+	Cancer	2022-09-19	Kathleen Hanna	White-White	Aetna	14238.317814	458	Urgent	2022-10-09	Penicillin	Abnormal
+
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 55500 entries, 0 to 55499
+Data columns (total 15 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   Name                55500 non-null  object 
+ 1   Age                 55500 non-null  int64  
+ 2   Gender              55500 non-null  object 
+ 3   Blood Type          55500 non-null  object 
+ 4   Medical Condition   55500 non-null  object 
+ 5   Date of Admission   55500 non-null  object 
+ 6   Doctor              55500 non-null  object 
+ 7   Hospital            55500 non-null  object 
+ 8   Insurance Provider  55500 non-null  object 
+ 9   Billing Amount      55500 non-null  float64
+ 10  Room Number         55500 non-null  int64  
+ 11  Admission Type      55500 non-null  object 
+ 12  Discharge Date      55500 non-null  object 
+ 13  Medication          55500 non-null  object 
+ 14  Test Results        55500 non-null  object 
+dtypes: float64(1), int64(2), object(12)
+memory usage: 6.4+ MB
+
+
+
+Name                  49992
+Age                      77
+Gender                    2
+Blood Type                8
+Medical Condition         6
+Date of Admission      1827
+Doctor                40341
+Hospital              39876
+Insurance Provider        5
+Billing Amount        50000
+Room Number             400
+Admission Type            3
+Discharge Date         1856
+Medication                5
+Test Results              3
+dtype: int64
+
+
+
+0        Matthew Smith
+1      Samantha Davies
+2     Tiffany Mitchell
+3          Kevin Wells
+4       Kathleen Hanna
+5        Taylor Newton
+6          Kelly Olson
+7       Suzanne Thomas
+8      Daniel Ferguson
+9          Heather Day
+10         John Duncan
+11        Douglas Mayo
+12    Kenneth Fletcher
+13     Theresa Freeman
+14     Roberta Stewart
+15     Maria Dougherty
+16       Erica Spencer
+17          Justin Kim
+18    Justin Moore Jr.
+19     Denise Galloway
+20        Krista Smith
+Name: Doctor, dtype: object
+
+
+
+df.shape  (55500, 15)
+
+df.size 832500 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
