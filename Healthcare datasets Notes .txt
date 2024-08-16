@@ -41,7 +41,7 @@ maximum age of the patients in the dataset
 max_age = df['Age'].max()
 max_age
 
-# 9. How many unique genders are there in the dataset
+#unique genders are there in the dataset
 unique_genders = df['Gender'].nunique()
 unique_genders
 
@@ -63,10 +63,9 @@ print(f"Number of patients with A+ blood type: {patients_with_A_plus}")
 patients_info = df[df['Blood Type'] == 'A+']
 print(patients_info)
 
-column provides the date of admission for patients
-# Answer: No code required (text-based answer).
 
- types of admissions are recorded in the dataset
+
+Types of admissions are recorded in the dataset
 unique_admission_types = df['Admission Type'].unique()
 unique_admission_types
 
@@ -76,7 +75,7 @@ most_common_admission_type
 
 
 
-range of room numbers in the dataset
+#range of room numbers in the dataset
 room_number_range = (df['Room Number'].min(), df['Room Number'].max())
 room_number_range
 
@@ -90,7 +89,7 @@ possible values in the "Test Results" column
 test_results_values = df['Test Results'].unique()
 test_results_values
 
-#How many unique medical conditions are there in the dataset?
+#unique medical conditions are there in the dataset
 unique_medical_conditions = df['Medical Condition'].nunique()
 unique_medical_conditions
 
@@ -98,11 +97,11 @@ unique_medical_conditions
 medical_condition_names = df['Medical Condition'].unique()
 print(f"Unique medical conditions: {medical_condition_names}")
 
-# 18. Which medical condition appears most frequently in the dataset?
+#medical condition appears most frequently in the dataset
 most_frequent_medical_condition = df['Medical Condition'].value_counts().idxmax()
 most_frequent_medical_condition
 
-# 19. Which medications are recorded in the dataset?
+#medications are recorded in the dataset
 unique_medications = df['Medication'].unique()
 unique_medications
 
@@ -170,12 +169,7 @@ print(f"Number of unique insurance providers: {insurance_providers_df.shape[0]}"
 print(insurance_providers_df.to_string(index=False))
 
 
-
-
-
-
-
- columns have the most unique values
+#columns have the most unique values
 most_unique_values_column = df.nunique().idxmax()
 most_unique_values_column
 
@@ -195,12 +189,12 @@ sns.histplot(df['Age'], kde=True)
 plt.title('Distribution of Age')
 plt.show()
 
-# 32. How can you visualize the relationship between billing amount and test results?
+#visualize the relationship between billing amount and test results
 sns.boxplot(x='Test Results', y='Billing Amount', data=df)
 plt.title('Billing Amount by Test Results')
 plt.show()
 
-#compare the frequency of different medical conditions?
+#compare the frequency of different medical conditions
 sns.countplot(x='Medical Condition', data=df)
 plt.title('Frequency of Medical Conditions')
 plt.show()
@@ -236,12 +230,6 @@ plt.show()
 #categorical variables like "Gender" and "Admission Type"
 df_encoded = pd.get_dummies(df, columns=['Gender', 'Admission Type'])
 df_encoded.head()
-
-
-
-
-
-
 
 machine learning model would be suitable for predicting test results
 # Answer: Decision Trees, Random Forest, Logistic Regression, SVM (No code required).
@@ -297,16 +285,12 @@ print(f"Number of duplicate records removed: {num_duplicates}")
 
 
 
-
 #check the number of duplicates that were removed,compare the shape before and after dropping duplicates
 initial_shape = df.shape
 df = df.drop_duplicates()
 final_shape = df.shape
 num_duplicates = initial_shape[0] - final_shape[0]
 print(f"Number of duplicate records removed: {num_duplicates}")
-
-
-
 
 
 
@@ -320,72 +304,38 @@ print(f"Total number of records: {total_records}")
 
 
 
-
-
-
-
-
-
-columns are there in the dataset?
-
-
+columns are there in the dataset
 # Total number of columns
 total_columns = df.shape[1]
 print(f"Total number of columns: {total_columns}")
 
 
-
-
-
-
-
 data type of the "Billing Amount" column
-
 #Data type of 'Billing Amount'
 billing_dtype = df['Billing Amount'].dtype
 print(f"Data type of 'Billing Amount': {billing_dtype}")
 
-
-
-
-
-
-unique blood types are present in the dataset
+#unique blood types are present in the dataset
 
 # Unique blood types
 unique_blood_types = df['Blood Type'].nunique()
 print(f"Unique blood types: {unique_blood_types}")
 
 
-
-
 minimum age of the patients in the dataset
-
-
 # Minimum age
 min_age = df['Age'].min()
 print(f"Minimum age of patients: {min_age}")
 
 
-
-
-
-
-
-maximum age of the patients in the dataset
-
+#maximum age of the patients in the dataset
 # Maximum age
 max_age = df['Age'].max()
 print(f"Maximum age of patients: {max_age}")
 
 
 
-
-
-
-
-
-unique genders are there in the dataset
+#unique genders are there in the dataset
 
 # Unique genders
 unique_genders = df['Gender'].nunique()
@@ -403,19 +353,11 @@ print(f"Number of patients with blood type 'A+': {a_positive_count}"
 
 
 
-
-
-
-
 types of admissions are recorded in the dataset
 
 # Types of admissions
 admission_types = df['Admission Type'].unique()
 print(f"Types of admissions: {admission_types}")
-
-
-
-
 
 
 
@@ -428,25 +370,12 @@ print(f"Most common type of admission: {most_common_admission}")
 
 
 
-
-
-
-
-
-
 range of room numbers in the dataset
 
 # Range of room numbers
 min_room = df['Room Number'].min()
 max_room = df['Room Number'].max()
 print(f"Room numbers range from {min_room} to {max_room}")
-
-
-
-
-
-
-
 
 
 
@@ -462,25 +391,11 @@ print(f"Possible test results: {test_results}")
 
 
 
-
-
-
-
-
 unique medical conditions are there in the dataset
 
 # Unique medical conditions
 unique_conditions = df['Medical Condition'].nunique()
 print(f"Unique medical conditions: {unique_conditions}")
-
-
-
-
-
-
-
-
-
 
 
 
@@ -494,10 +409,6 @@ print(f"Most frequent medical condition: {most_common_condition}")
 # Recorded medications
 medications = df['Medication'].unique()
 print(f"Medications recorded: {medications}")
-
-
-
-
 
 
 
@@ -524,25 +435,11 @@ print(f"Highest billing amount: {max_billing}")
 
 
 
-
-
-
-
-
-
-
 lowest billing amount recorded in the dataset
 
 # Lowest billing amount
 min_billing = df['Billing Amount'].min()
 print(f"Lowest billing amount: {min_billing}")
-
-
-
-
-
-
-
 
 
 
@@ -557,12 +454,6 @@ print(f"Most frequent insurance provider: {most_common_insurance}")
 
 
 
-
-
-
-
-
-
 average billing amount in the dataset
 
 # Average billing amount
@@ -573,15 +464,11 @@ print(f"Average billing amount: {avg_billing}")
 
 
 
-
-
 unique insurance providers are there in the dataset
 
 # Unique insurance providers
 unique_insurances = df['Insurance Provider'].nunique()
 print(f"Unique insurance providers: {unique_insurances}")
-
-
 
 
 
@@ -608,18 +495,11 @@ print(f"\nColumn with the most unique values: {most_unique_column} ({unique_coun
 
 
 
-
-
-
 handle inconsistencies in the "Name" column
 
 # Standardizing the 'Name' column to title case and removing leading/trailing spaces
 df['Name'] = df['Name'].str.title().str.strip()
 df[['Name']].head()
-
-
-
-
 
 
 
