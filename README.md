@@ -1,6 +1,32 @@
 # healthcaredatasets
 This repository contains a synthetic healthcare dataset spanning from 2019 to 2024, consisting of 10,000 records. Each record represents a fictional patient and includes various attributes such as patient demographics, medical conditions, admission details, and billing information. The dataset is meticulously crafted for educational and non-commercial purposes, providing a valuable resource for practicing data analysis, machine learning, and healthcare analytics without compromising real patient privacy.
 
+## Quick Start - View All CSV Files
+
+To quickly view and analyze all CSV files in this repository, run the included CSV analyzer:
+
+```bash
+# Install required dependencies
+pip install -r requirements.txt
+
+# Run the CSV file analyzer
+python csv_analyzer.py
+```
+
+This will automatically find, load, and analyze all CSV files in the repository, providing:
+- Basic dataset information (rows, columns, file size)
+- Column details with data types and null value counts
+- Data preview (first 5 rows)
+- Statistical summary for numeric columns
+- Unique value counts for categorical columns
+
+## Alternative: Jupyter Notebook Analysis
+
+For interactive analysis, open the Jupyter notebook:
+```bash
+jupyter notebook healthcare_datasets.ipynb
+```
+
 Dataset Overview
 
 The dataset comprises multiple columns, each offering specific details about the patients, their admissions, and the healthcare services received. Key attributes include:
