@@ -1,323 +1,58 @@
-# Importing necessary libraries
-import numpy as np
+Healthcare Dataset Analysis Notes
+
+Use this quick workflow for clean, repeatable analysis.
+
+1) Setup
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+2) Load data
+
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-# Loading the dataset
-df = pd.read_csv(r'C:\Users\......\Data science\healthcare_dataset.csv', encoding='unicode_escape')
+df = pd.read_csv("healthcare_dataset.csv")
 
-total number of records in the dataset
-total_records = df.shape[0]
-total_records
+3) Basic quality checks
 
-columns are there in the dataset
-total_columns = df.shape[1]
-total_columns
+print("Shape:", df.shape)
+print("Columns:", len(df.columns))
+print("Missing values:\n", df.isna().sum())
 
-missing values in the dataset
-missing_values = df.isnull().sum()
-missing_values
+4) Quick profiling questions
 
+print("Age min/max:", df["Age"].min(), df["Age"].max())
+print("Unique genders:", df["Gender"].unique())
+print("Unique blood types:", df["Blood Type"].nunique())
+print("Unique medical conditions:", df["Medical Condition"].nunique())
+print("Most common admission type:")
+print(df["Admission Type"].value_counts().head(1))
+print("Test results distribution:")
+print(df["Test Results"].value_counts(normalize=True).round(3))
 
+5) Clean fields commonly used in modeling
 
-data type of the "Billing Amount" column
-billing_amount_dtype = df['Billing Amount'].dtype
-billing_amount_dtype
+df["Name"] = df["Name"].astype(str).str.title().str.strip()
+df["Doctor"] = df["Doctor"].astype(str).str.title().str.strip()
+df["Date of Admission"] = pd.to_datetime(df["Date of Admission"], errors="coerce")
+df["Discharge Date"] = pd.to_datetime(df["Discharge Date"], errors="coerce")
 
+6) Suggested visualizations
 
+- Age distribution histogram
+- Billing Amount by Test Results (boxplot)
+- Medical Condition frequency (countplot)
+- Age vs Billing Amount (scatter)
 
+7) Optional project scripts
 
-
-unique blood types are present in the dataset
-unique_blood_types = df['Blood Type'].nunique()
-unique_blood_types
-
-minimum age of the patients in the dataset
-min_age = df['Age'].min()
-min_age
-
-maximum age of the patients in the dataset
-max_age = df['Age'].max()
-max_age
-
-#unique genders are there in the dataset
-unique_genders = df['Gender'].nunique()
-unique_genders
-
-# Print the names of the unique genders
-gender_names = df['Gender'].unique()
-print(f"Names of unique genders: {gender_names}")
-
-
-# 10. How many patients have the blood type "A+"?
-patients_with_A_plus = df[df['Blood Type'] == 'A+'].shape[0]
-patients_with_A_plus
-
-
-# Count the number of patients with blood type "A+"
-patients_with_A_plus = df[df['Blood Type'] == 'A+'].shape[0]
-print(f"Number of patients with A+ blood type: {patients_with_A_plus}")
-
-# Print all information of patients with blood type "A+"
-patients_info = df[df['Blood Type'] == 'A+']
-print(patients_info)
-
-
-
-Types of admissions are recorded in the dataset
-unique_admission_types = df['Admission Type'].unique()
-unique_admission_types
-
-most common type of admission in the dataset
-most_common_admission_type = df['Admission Type'].value_counts().idxmax()
-most_common_admission_type
-
-
-
-#range of room numbers in the dataset
-room_number_range = (df['Room Number'].min(), df['Room Number'].max())
-room_number_range
-
-# Find the maximum room number
-max_room_number = df['Room Number'].max()
-print(f"Maximum patient admitted room number: {max_room_number}")
-
-
-
-possible values in the "Test Results" column
-test_results_values = df['Test Results'].unique()
-test_results_values
-
-#unique medical conditions are there in the dataset
-unique_medical_conditions = df['Medical Condition'].nunique()
-unique_medical_conditions
-
-# Print the names of the unique medical conditions
-medical_condition_names = df['Medical Condition'].unique()
-print(f"Unique medical conditions: {medical_condition_names}")
-
-#medical condition appears most frequently in the dataset
-most_frequent_medical_condition = df['Medical Condition'].value_counts().idxmax()
-most_frequent_medical_condition
-
-#medications are recorded in the dataset
-unique_medications = df['Medication'].unique()
-unique_medications
-
-# Get all unique medications recorded in the dataset
-unique_medications = df['Medication'].unique()
-print(f"Medications recorded in the dataset: {unique_medications}")
-
-# Find the medication with the maximum occurrence
-max_medication = df['Medication'].value_counts().idxmax()
-max_count = df['Medication'].value_counts().max()
-print(f"Medication with maximum occurrence: {max_medication} ({max_count} times)")
-
-#Find the medication with the minimum occurrence
-min_medication = df['Medication'].value_counts().idxmin()
-min_count = df['Medication'].value_counts().min()
-print(f"Medication with minimum occurrence: {min_medication} ({min_count} time(s))")
-
-# Plotting the pie chart for medication counts
-plt.figure(figsize=(10, 7))
-medication_counts.plot.pie(autopct='%1.1f%%', startangle=140, shadow=True)
-plt.title('Medication Distribution from Maximum to Minimum Recorded')
-plt.ylabel('')  # Hide the y-label as it's unnecessary in a pie chart
-plt.show()
-
-
-unique doctors are listed in the dataset
-unique_doctors = df['Doctor'].nunique()
-unique_doctors
-
- highest billing amount recorded in the dataset
-max_billing_amount = df['Billing Amount'].max()
-max_billing_amount
-
- lowest billing amount recorded in the dataset
-min_billing_amount = df['Billing Amount'].min()
-min_billing_amount
-
-
-#Find the record(s) with the minimum billing amount
-record_with_min_billing = df[df['Billing Amount'] == min_billing_amount]
-record_with_min_billing
-
- insurance provider appears most frequently in the dataset
-most_frequent_insurance_provider = df['Insurance Provider'].value_counts().idxmax()
-most_frequent_insurance_provider
-
-average billing amount in the dataset
-average_billing_amount = df['Billing Amount'].mean()
-average_billing_amount
-
-
-unique insurance providers are there in the dataset
-unique_insurance_providers = df['Insurance Provider'].nunique()
-unique_insurance_providers
-
-
-# Get all unique insurance providers     {bELOW  3 CODE SAME LINE }
-unique_insurance_providers = df['Insurance Provider'].unique()
-
-# Convert the list of unique insurance providers to a DataFrame for tabular display
-insurance_providers_df = pd.DataFrame({'Insurance Provider': unique_insurance_providers})
-
-# Display the unique insurance providers in tabular format
-print(f"Number of unique insurance providers: {insurance_providers_df.shape[0]}")
-print(insurance_providers_df.to_string(index=False))
-
-
-#columns have the most unique values
-most_unique_values_column = df.nunique().idxmax()
-most_unique_values_column
-
-#handle inconsistencies in the "Name" column?
-df['Name'] = df['Name'].str.title()
-df['Name'].head()
-
-#convert the "Date of Admission" column to a datetime format?
-df['Date of Admission'] = pd.to_datetime(df['Date of Admission'])
-df['Date of Admission'].head()
-
-#normalize the "Billing Amount" column?
-# Answer: No code required (depends on the context of the machine learning model).
-
-#understand the distribution of ages in the dataset?
-sns.histplot(df['Age'], kde=True)
-plt.title('Distribution of Age')
-plt.show()
-
-#visualize the relationship between billing amount and test results
-sns.boxplot(x='Test Results', y='Billing Amount', data=df)
-plt.title('Billing Amount by Test Results')
-plt.show()
-
-#compare the frequency of different medical conditions
-sns.countplot(x='Medical Condition', data=df)
-plt.title('Frequency of Medical Conditions')
-plt.show()
-
-# Plot the frequency of different medical conditions
-sns.countplot(x='Medical Condition', data=df)
-# Customize the plot
-plt.title('Frequency of Medical Conditions')
-plt.xlabel('Medical Condition')
-plt.ylabel('Count')
-plt.xticks(rotation=45)  # Rotate x labels if they are long
-# Show the plot
-plt.show()    
-
-
-
-
-#visualize the distribution of billing amounts across different hospitals?
-plt.figure(figsize=(10, 6))
-sns.boxplot(x='Hospital', y='Billing Amount', data=df)
-plt.title('Billing Amount by Hospital')
-plt.xticks(rotation=90)
-plt.show()
-
-#identify any correlation between age and billing amount?
-sns.scatterplot(x='Age', y='Billing Amount', data=df)
-plt.title('Age vs Billing Amount')
-plt.show()
-
-#features for predicting test results
-# Answer: "Age", "Gender", "Medical Condition", "Date of Admission", "Billing Amount", etc. (No code required).
-
-#categorical variables like "Gender" and "Admission Type"
-df_encoded = pd.get_dummies(df, columns=['Gender', 'Admission Type'])
-df_encoded.head()
-
-machine learning model would be suitable for predicting test results
-# Answer: Decision Trees, Random Forest, Logistic Regression, SVM (No code required).
-
-#median billing amount in the dataset
-median_billing_amount = df['Billing Amount'].median()
-median_billing_amount
-
-#significant difference in billing amounts between genders
-sns.boxplot(x='Gender', y='Billing Amount', data=df)
-plt.title('Billing Amount by Gender')
-plt.show()
-
-
-
-#calculate the correlation between age and billing amount
-correlation_age_billing = df['Age'].corr(df['Billing Amount'])
-correlation_age_billing
-
-
-
-
-
-#identify and correct any potential outliers in the billing amount
-sns.boxplot(df['Billing Amount'])
-plt.title('Outliers in Billing Amount')
-plt.show()
-
-#ensure data consistency in the "Name" and "Doctor" columns
-#Converts each name to title case. Title case capitalizes the first letter of each word (e.g., "matthew smith" becomes "Matthew Smith").
-#This ensures that names are consistently formatted.
-df['Doctor'] = df['Doctor'].str.title().str.strip()
-df['Doctor'].head()
-
-#verify the accuracy of the "Discharge Date" column
-df['Discharge Date'] = pd.to_datetime(df['Discharge Date'])
-df['Date of Admission'] <= df['Discharge Date']
-
-
-
-
-find duplicate records in the dataset
-df = df.drop_duplicates()
-df.shape
-
-#check the number of duplicates that were removed,compare the shape before and after dropping duplicates
-initial_shape = df.shape
-df = df.drop_duplicates()
-final_shape = df.shape
-num_duplicates = initial_shape[0] - final_shape[0]
-print(f"Number of duplicate records removed: {num_duplicates}")
-
-
-
-
-#check the number of duplicates that were removed,compare the shape before and after dropping duplicates
-initial_shape = df.shape
-df = df.drop_duplicates()
-final_shape = df.shape
-num_duplicates = initial_shape[0] - final_shape[0]
-print(f"Number of duplicate records removed: {num_duplicates}")
-
-
-
-
-total number of records in the dataset
-
-#Total number of records
-total_records = df.shape[0]
-print(f"Total number of records: {total_records}")
-
-
-
-
-columns are there in the dataset
-# Total number of columns
-total_columns = df.shape[1]
-print(f"Total number of columns: {total_columns}")
-
-
-data type of the "Billing Amount" column
-#Data type of 'Billing Amount'
-billing_dtype = df['Billing Amount'].dtype
-print(f"Data type of 'Billing Amount': {billing_dtype}")
-
-#unique blood types are present in the dataset
-
-# Unique blood types
+- Validate schema and values:
+    python scripts/validate_dataset.py
+- Print compact EDA report:
+    python scripts/eda_summary.py
+- Train baseline classifier:
+    python scripts/train_baseline.py
 unique_blood_types = df['Blood Type'].nunique()
 print(f"Unique blood types: {unique_blood_types}")
 
