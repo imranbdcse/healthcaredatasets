@@ -10,7 +10,7 @@ The project is designed for multiple experience levels. Beginners can focus on p
 
 ## GitHub About (Short)
 
-Synthetic healthcare dataset project for end-to-end data validation, EDA, visualization, and baseline ML using privacy-safe records.
+A synthetic healthcare dataset (2019-2024) with 10000 records covering patient demographics, medical conditions, and billing info. Designed for educational purposes, it supports data analysis and ML practice without privacy concerns. Developed using Python, Jupyter Notebook, and libraries like Seaborn Pandas, and NumPy.
 
 Tagline: From raw healthcare data to validated insights and baseline predictions.
 
