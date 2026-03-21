@@ -2,15 +2,15 @@
 
 ## About
 
-Healthcare Datasets is a complete, portfolio-ready data science project built around a synthetic healthcare dataset designed for practical analysis and machine learning work. The project provides a realistic environment for learning and experimentation while keeping privacy at the center by using non-identifiable, synthetic patient records.
+Healthcare Datasets is a complete, portfolio-ready data science project built around a synthetic healthcare dataset spanning 2019–2024 with 10,000 patient records. The dataset covers patient demographics, medical conditions, and billing information, providing a realistic environment for learning and experimentation while keeping privacy at the center by using non-identifiable, synthetic records.
 
-This repository is structured to support the full analytics lifecycle: dataset validation, exploratory analysis, visualization, and baseline predictive modeling. It helps learners move beyond isolated notebook experiments and practice reproducible, script-driven workflows that reflect real-world data science execution.
+This repository is structured to support the full analytics lifecycle: dataset validation, exploratory analysis, visualization, and baseline predictive modeling. Developed using Python, Jupyter Notebook, and libraries including Pandas, NumPy, Seaborn, Matplotlib, and scikit-learn, it helps learners move beyond isolated notebook experiments and practice reproducible, script-driven workflows that reflect real-world data science execution.
 
 The project is designed for multiple experience levels. Beginners can focus on profiling and data cleaning fundamentals, intermediate users can build stronger feature pipelines and model evaluations, and portfolio builders can present a healthcare-focused project with clear documentation and reproducibility.
 
 ## GitHub About (Short)
 
-Synthetic healthcare dataset project for end-to-end data validation, EDA, visualization, and baseline ML using privacy-safe records.
+Synthetic healthcare dataset (2019–2024, 10k records) for end-to-end data validation, EDA, visualization, and baseline ML — built with Python, Pandas, NumPy, and Seaborn.
 
 Tagline: From raw healthcare data to validated insights and baseline predictions.
 
